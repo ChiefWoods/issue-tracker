@@ -29,38 +29,38 @@ const analyser = require('./assertion-analyser');
 const EventEmitter = require('events').EventEmitter;
 
 const Mocha = require('mocha'),
-    fs = require('fs'),
-    path = require('path');
+  fs = require('fs'),
+  path = require('path');
 
 const mocha = new Mocha();
-let testDir = './tests'
+let testDir = './tests';
 
 
 // Add each .js file to the mocha instance
-fs.readdirSync(testDir).filter(function(file){
-    // Only keep the .js files
-    return file.substr(-3) === '.js';
+fs.readdirSync(testDir).filter(function (file) {
+  // Only keep the .js files
+  return file.substr(-3) === '.js';
 
-}).forEach(function(file){
-    mocha.addFile(
-        path.join(testDir, file)
-    );
+}).forEach(function (file) {
+  mocha.addFile(
+    path.join(testDir, file)
+  );
 });
 
 let emitter = new EventEmitter();
-emitter.run = function() {
+emitter.run = function () {
 
   let tests = [];
   let context = "";
   let separator = ' -> ';
   // Run the tests.
   try {
-  let runner = mocha.ui('tdd').run()
-    .on('test end', function(test) {
+    let runner = mocha.ui('tdd').run()
+      .on('test end', function (test) {
         // remove comments
         let body = test.body.replace(/\/\/.*\n|\/\*.*\*\//g, '');
         // collapse spaces
-        body = body.replace(/\s+/g,' ');
+        body = body.replace(/\s+/g, ' ');
         let obj = {
           title: test.title,
           context: context.slice(0, -separator.length),
@@ -69,20 +69,20 @@ emitter.run = function() {
           assertions: analyser(body)
         };
         tests.push(obj);
-    })
-    .on('end', function() {
+      })
+      .on('end', function () {
         emitter.report = tests;
-        emitter.emit('done', tests)
-    })
-    .on('suite', function(s) {
-      context += (s.title + separator);
+        emitter.emit('done', tests);
+      })
+      .on('suite', function (s) {
+        context += (s.title + separator);
 
-    })
-    .on('suite end', function(s) {
-      context = context.slice(0, -(s.title.length + separator.length))
-    })
-  } catch(e) {
-    throw(e);
+      })
+      .on('suite end', function (s) {
+        context = context.slice(0, -(s.title.length + separator.length));
+      });
+  } catch (e) {
+    throw (e);
   }
 };
 
