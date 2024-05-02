@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  background-color: #FAFAFA;
+}
+
+main {
+  margin-inline: 25px;
+}
+
+h1 {
+  font-size: 3.2rem;
+  margin-block: 20px;
+}
+
+hr {
+  margin-block: 25px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  &.apitest {
+    flex-direction: column;
+    align-items: center;
+    padding-block: 20px;
+  }
+}
+
+div, form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+  &.example {
+    margin-block: 40px;
+    gap: 10px;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+pre {
+  text-align: start;
+}
+
+code {
+  font-size: 1.6rem;
+  background-color: white;
+  padding: 2px;
+  line-height: 2.2rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+h4, p {
+  font-size: 1.6rem;
+}
+
+form {
+  gap: 10px;
+
+  & > p {
+    font-weight: bold;
+  }
+}
+
+form > div {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 10px;
+}
+
+button {
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+label {
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+input[type="checkbox"] {
+  width: 1.4rem;
+  aspect-ratio: 1/1;
+}
+
+.issue-container {
+  display: grid;
+  margin-block: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+  place-items: center;
+}
+
+.issue {
+  border: 2px solid black;
+  padding: 5px;
+  width: 375px;
+
+  &.closed {
+    background-color: lightgrey;
+  }
+}
+
+.issue-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}

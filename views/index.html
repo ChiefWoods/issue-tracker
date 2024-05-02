@@ -1,115 +1,94 @@
 <!DOCTYPE html>
 <html>
+
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Issue Tracker</title>
-    <link rel="icon" type="image/png" href="https://cdn.freecodecamp.org/universal/favicons/favicon-16x16.png" />
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="https://chiefwoods.github.io/footer-template/template.css">
+    <link rel="stylesheet" type="text/css" href="../public/styles.css">
+    <script src="../public/script.js" defer></script>
   </head>
+
   <body>
-    <header>
-      <h1>
-        Issue Tracker
-      </h1>
-    </header>
-    <section style="margin: 0 50px;">
-      <h3>Example <code>GET</code> usage</h3>
-      <code>/api/issues/{project}</code><br>
-      <code>/api/issues/{project}?open=true&amp;assigned_to=Joe</code><br>
-      <h3>Example return</h3>
-      <pre>
-<code>[
+    <main>
+      <h1>Issue Tracker</h1>
+      <hr>
+      <section>
+        <div class="example">
+          <h2>Example Usage:</h2>
+          <div>
+            <code>/api/issues/{project}</code>
+            <code>/api/issues/{project}?open=true&assigned_to=Joe</code>
+          </div>
+        </div>
+        <div class="example">
+          <h2>Example Return:</h2>
+          <pre>
+            <code>
+[
   { 
     "_id": "5871dda29faedc3491ff93bb",
     "issue_title": "Fix error in posting data",
     "issue_text": "When we post data it has an error.",
-    "created_on": "2017-01-08T06:35:14.240Z",
-    "updated_on": "2017-01-08T06:35:14.240Z",
     "created_by": "Joe",
     "assigned_to": "Joe",
-    "open": true,
     "status_text": "In QA"
+    "open": true,
+    "created_on": "2017-01-08T06:35:14.240Z",
+    "updated_on": "2017-01-08T06:35:14.240Z",
   },
   ...
- ]
-</code>
+]</code>
 </pre>
-    </section>
-    <hr style='margin: 0 50px'>
-    <section id='testui' style='margin-left: 50px;'>
-      <h3>Examples</h3>
-      Go to <a href='/api/issues/apitest/'><code>/api/issues/apitest/</code></a>  project
-      <h2 style="text-align: left">API Tests</h2>
-      <h3>Submit issue on <i>apitest</i></h3>
-      <form id="testForm" class="border">
-        <input type="text" name="issue_title" placeholder="*Title" style="width: 100px" required=''><br>
-        <textarea type="text" name="issue_text" placeholder="*Text" style="width: 100px" required=''></textarea><br>
-        <input type="text" name="created_by" placeholder="*Created by" style="width: 100px" required=''><br>
-        <input type="text" name="assigned_to" placeholder="(opt)Assigned to" style="width: 100px"><br>
-        <input type="text" name="status_text" placeholder="(opt)Status text" style="width: 100px"><br>
-        <button type="submit">Submit Issue</button>
-      </form><br>
-      <h3>Update issue on <i>apitest</i> (Change any or all to update issue on the _id supplied)</h3>
-      <form id="testForm2" class="border">
-        <input type="text" name="_id" placeholder="*_id" style="width: 100px" required=''><br>
-        <input type="text" name="issue_title" placeholder="(opt)Title" style="width: 100px"><br>
-        <textarea type="text" name="issue_text" placeholder="(opt)Text" style="width: 100px"></textarea><br>
-        <input type="text" name="created_by" placeholder="(opt)Created by" style="width: 100px"><br>
-        <input type="text" name="assigned_to" placeholder="(opt)Assigned to" style="width: 100px"><br>
-        <input type="text" name="status_text" placeholder="(opt)Status text" style="width: 100px"><br>
-        <label><input type="checkbox" name="open" value="false"> Check to close issue</label><br>
-        <button type="submit">Submit Issue</button>
-      </form><br>
-      <h3>Delete issue on <i>apitest</i></h3>
-      <form id="testForm3" class="border">
-        <input type="text" name="_id" placeholder="_id" style="width: 100px" required=''><br>
-        <button type="submit">Delete Issue</button>
-      </form>
-      <code id='jsonResult'></code>
-    </section>
-    <hr style='margin: 50px; margin-top: 200px'>
-    <!-- Your web-app is https, so your scripts need to be too -->
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
-            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
-            crossorigin="anonymous"></script>
-    <script>
-      $(function() {
-        $('#testForm').submit(function(e) {
-          $.ajax({
-            url: '/api/issues/apitest',
-            type: 'post',
-            data: $('#testForm').serialize(),
-            success: function(data) {
-              $('#jsonResult').text(JSON.stringify(data));
-            }
-          });
-          e.preventDefault();
-        });
-        $('#testForm2').submit(function(e) {
-          $.ajax({
-            url: '/api/issues/apitest',
-            type: 'put',
-            data: $('#testForm2').serialize(),
-            success: function(data) {
-              $('#jsonResult').text(JSON.stringify(data));
-            }
-          });
-          e.preventDefault();
-        });
-        $('#testForm3').submit(function(e) {
-          $.ajax({
-            url: '/api/issues/apitest',
-            type: 'delete',
-            data: $('#testForm3').serialize(),
-            success: function(data) {
-              $('#jsonResult').text(JSON.stringify(data));
-            }
-          });
-          e.preventDefault();
-        });
-      });
-   </script>
+        </div>
+      </section>
+      <hr>
+      <section class="apitest">
+        <hgroup>
+          <h2>Examples</h2>
+          <p>Go to <a href="./apitest">/apitest</a> project</p>
+        </hgroup>
+        <h3>API Tests</h3>
+        <form id="submit">
+          <h4>Submit issue on <i>apitest</i></h4>
+          <input type="text" name="issue_title" placeholder="*Title" required>
+          <textarea name="issue_text" placeholder="*Text" required></textarea>
+          <input type="text" name="created_by" placeholder="*Created by" required>
+          <input type="text" name="assigned_to" placeholder="Assigned to">
+          <input type="text" name="status_text" placeholder="Status text">
+          <button type="submit">Submit Issue</button>
+        </form>
+        <form id="update">
+          <h4>Update issue on <i>apitest</i></h4>
+          <input type="text" name="_id" placeholder="*_id" required>
+          <input type="text" name="issue_title" placeholder="Title">
+          <textarea name="issue_text" placeholder="Text"></textarea>
+          <input type="text" name="created_by" placeholder="Created by">
+          <input type="text" name="assigned_to" placeholder="Assigned to">
+          <input type="text" name="status_text" placeholder="Status text">
+          <label for="close-issue">
+            <input type="checkbox" name="open" id="close-issue" value="false">
+            Close issue
+          </label>
+          <button type="submit">Update Issue</button>
+        </form>
+        <form id="delete">
+          <h4>Delete issue on <i>apitest</i></h4>
+          <input type="text" name="_id" placeholder="*_id" required>
+          <button type="submit">Delete Issue</button>
+        </form>
+        <code class="result"></code>
+      </section>
+    </main>
+    <footer>
+      <span class="made-by">Copyright @
+        <script>document.write(new Date().getFullYear())</script> ChiefWoods
+      </span>
+      <a class="github-link" href="https://github.com/ChiefWoods/issue-tracker" target="_blank">
+        <img src="./public/icons/github.svg" class="github-icon" alt="GitHub">
+      </a>
+    </footer>
   </body>
+
 </html>
